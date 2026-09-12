@@ -1,0 +1,38 @@
+{
+  "name": "clock_visitor_api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@azure-rest/ai-vision-face": "^1.0.0-beta.3",
+    "@supabase/supabase-js": "^2.112.3",
+    "@types/bcryptjs": "^2.4.6",
+    "axios": "^1.13.2",
+    "bcryptjs": "^3.0.3",
+    "exceljs": "^4.4.0",
+    "mysql2": "^3.23.1",
+    "next": "16.0.10",
+    "nodemailer": "^7.0.12",
+    "pptxgenjs": "^4.0.1",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "swagger-jsdoc": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/ldapjs": "^3.0.6",
+    "@types/node": "^20.19.37",
+    "@types/nodemailer": "^7.0.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "baseline-browser-mapping": "^2.9.19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.10",
+    "typescript": "^5.9.3"
+  }
+}

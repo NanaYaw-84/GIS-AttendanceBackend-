@@ -1,0 +1,44 @@
+// A simple list of departments used across the app.
+// Exported as the default value for easy imports like `import departments from '@/lib/department'`.
+
+
+
+
+const departments: string[] = [
+  "AML",
+  "HUMAN RESOURCE",
+  "AGRIC FINANCING",
+  "ASSET FINANCE UNIT",
+  "AUDIT & ASSURANCE",
+  "BUSINESS INTELLIGENCE INNOVATION AND RESEARCH DEPT",
+  "COMMERCIAL BANKING",
+  "CONSUMER FINANCE",
+  "CORPORATE BANKING",
+  "CORPORATE COMMUNICATIONS",
+  "CORPORATE SERVICES",
+  "CUSTOMER CARE & SERVICE QUALITY",
+  "E-BUSINESS",
+  "E-BUSINESS & CARDS",
+  "EXECUTIVE",
+  "FACILITIES / GENERAL SERVICES",
+  "MARKETING AND COMMUNICATION",
+  "FINANCE",
+  "GENERAL COUNSEL (LEGAL)",
+  "INFORMATION TECHNOLOGY",
+  "INTERNAL AUDIT",
+  "REMITTANCES",
+  "OPERATIONS & CONTROL",
+  "PARASTATALS",
+  "PROCUREMENT",
+  "RECOVERIES",
+  "RETAIL BANKING",
+  "RISK & COMPLIANCE",
+  "SME BANKING",
+  "TRADE FINANCE",
+  "TREASURY & AML",
+]
+
+
+
+export const getDepartments = () => departments
+

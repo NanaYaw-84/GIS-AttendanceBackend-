@@ -1,0 +1,79 @@
+import express from "express";
+import bodyParser from "body-parser";
+import { NextResponse, NextRequest } from "next/server";
+// import cors from "cors";
+import ActiveDirectory from "activedirectory2";
+
+const app = express();
+// app.use(cors());
+app.use(bodyParser.json());
+
+// 🔐 Active Directory Configuration
+const config = {
+  url: "ldap://adb-hq-dc01",
+  baseDN: "dc=agricbank,dc=com",
+  username: "esssarpong",
+  password: "Jesus.com121",
+  port: "589",
+};
+
+ if (!config.url || !config.baseDN || !config.username || !config.password) {
+   throw new Error("Active Directory configuration is incomplete."); 
+ }
+
+const ad = new ActiveDirectory(config);
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { username, password } = body;
+
+    if (!username || !password) {
+      return NextResponse.json(
+        { message: "Username and password required" },
+        { status: 400 }
+      );
+    }
+    // Authenticate user
+    const authenticated = await new Promise<boolean>((resolve, reject) => {
+      ad.authenticate(username, password, (err: Error | null, auth: boolean) => {
+        if (err) return reject(err);
+        resolve(auth);
+      });
+    });
+
+    if (!authenticated) {
+      return NextResponse.json(
+        { message: "Invalid username or password" },
+        { status: 401 }
+      );
+    }
+
+    // Fetch user details
+    const user: any = await new Promise((resolve, reject) => {
+      ad.findUser(username, (err: Error | null, user: any) => {
+        if (err) return reject(err);
+        resolve(user);
+      });
+    });
+
+    if (!user) {
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      message: "Login successful",
+      user: {
+        name: user.displayName,
+        email: user.mail,
+        department: user.department,
+      },
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    return NextResponse.json(
+      { message: "Authentication error", error: String(error) },
+      { status: 500 }
+    );
+  }
+}
